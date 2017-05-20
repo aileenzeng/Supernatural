@@ -19,6 +19,7 @@ public class DeanScript : MonoBehaviour {
 	public float jumpSpeed;
 	public float gravity;
 	public LayerMask groundLayers;
+	public Transform groundCheck;
 	private bool isGrounded;
 
 	// Use this for initialization
@@ -38,11 +39,14 @@ public class DeanScript : MonoBehaviour {
 		//AUTOMATIC
 		//Tell if there is anything in a sphere shape below the player
 		RaycastHit hitInfo;
-		isGrounded = Physics.SphereCast(rb.position, 0.5f, Vector2.down, out hitInfo, GetComponent<Collider2D>().bounds.size.y / 2, groundLayers);
-		Debug.Log (isGrounded);
-		//isGrounded = Physics.Raycast(transform.position, Vector2.down, GetComponent<Collider2D>().bounds.size.y / 2);
+		isGrounded = Physics2D.Raycast (transform.position, Vector2.down, GetComponent<Collider2D> ().bounds.size.y / 2 + 0.01f, groundLayers);
+		//isGrounded = Physics.SphereCast(rb.position, 0.5f, Vector2.down, out hitInfo, GetComponent<Collider2D>().bounds.size.y / 2, groundLayers);
 
+		Debug.Log (isGrounded);
+
+		//isGrounded = Physics.Raycast(transform.position, Vector2.down, GetComponent<Collider2D>().bounds.size.y / 2);
 		//transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
+		isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		//adds gravity to the player
 		rb.AddForce(Vector2.down * gravity * rb.mass);
 
@@ -64,9 +68,10 @@ public class DeanScript : MonoBehaviour {
 		}
 
 		//makes player jump
-		if (Input.GetButton (JUMP) == true && isGrounded) 
+		if (Input.GetButton (JUMP) == true) 
 		{
-			rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+			Debug.Log ("ok");
+			rb.AddForce(Vector3.up * jumpSpeed);
 		}
 
 		//makes player shoot
