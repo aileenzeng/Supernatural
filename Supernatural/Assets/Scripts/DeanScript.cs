@@ -38,9 +38,9 @@ public class DeanScript : MonoBehaviour {
 		//AUTOMATIC
 		//Tell if there is anything in a sphere shape below the player
 		RaycastHit hitInfo;
-		//isGrounded = Physics.SphereCast(rb.position, 0.51f, Vector3.down, out hitInfo, GetComponent<Collider2D>().bounds.size.y / 2, groundLayers);
+		isGrounded = Physics.SphereCast(rb.position, 0.5f, Vector2.down, out hitInfo, GetComponent<Collider2D>().bounds.size.y / 2, groundLayers);
 		Debug.Log (isGrounded);
-		isGrounded = Physics.Raycast(transform.position, Vector2.down, GetComponent<Collider2D>().bounds.size.y / 2);
+		//isGrounded = Physics.Raycast(transform.position, Vector2.down, GetComponent<Collider2D>().bounds.size.y / 2);
 
 		//transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 		//adds gravity to the player
