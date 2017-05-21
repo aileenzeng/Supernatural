@@ -13,6 +13,8 @@ public class DemonScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameTicks = 0.0f;
+
+		rb = GetComponent<Rigidbody2D> ();
 		rb.freezeRotation = true;
 		
 	}
