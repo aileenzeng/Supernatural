@@ -6,7 +6,7 @@ public class DeanScript : MonoBehaviour {
 
 	private float gameTicks;	//timing
 
-	//variables for input
+	//strings for input
 	private static readonly string RIGHT = "right";
 	private static readonly string LEFT = "left";
 	private static readonly string JUMP = "jump";
@@ -20,9 +20,11 @@ public class DeanScript : MonoBehaviour {
 	public LayerMask groundLayers;
 	private bool isGrounded;
 
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		rb.freezeRotation = true;
 	}
 	
 	// Update is called once per frame
