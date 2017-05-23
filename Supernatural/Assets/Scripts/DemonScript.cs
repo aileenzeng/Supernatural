@@ -10,11 +10,17 @@ public class DemonScript : MonoBehaviour {
 
 	public float DemonSpeed; 
 
+	private bool direction; //right = true, left = false
+	public float rightBoundary; //how far the demon goes right
+	public float leftBoundary; //how far the demon goes left
+
 	// Use this for initialization
 	void Start () {
 		gameTicks = 0.0f;
 
 		rb = GetComponent<Rigidbody2D> ();
+		ts = GetComponent<Transform> (); 
+
 		rb.freezeRotation = true;
 		
 	}
@@ -29,5 +35,10 @@ public class DemonScript : MonoBehaviour {
 
 	//moves demon left and right
 	void moveDemon() {
+
+	}
+
+	public void kill() {
+		Destroy (this.gameObject);
 	}
 }
