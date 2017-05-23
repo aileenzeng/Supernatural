@@ -48,10 +48,13 @@ public class DeanScript : MonoBehaviour {
 		movePlayer();
 		testFunction();
 
+		if (health = 0) { die (); }
+
 	}
 
 	//Handles user control for player
-	void movePlayer() {
+	void movePlayer() 
+	{
 		//moves player left
 		if (Input.GetButton (LEFT) == true) 
 		{
@@ -84,22 +87,40 @@ public class DeanScript : MonoBehaviour {
 	}
 
 	//use to print out debug messages (that you don't want to spam)
-	void testFunction() {
-		if (Input.GetButton (TEST) == true && buttonTime > 1.0f) {
+	void testFunction() 
+	{
+		if (Input.GetButton (TEST) == true && buttonTime > 1.0f) 
+		{
 			Debug.Log ("Hello!");
 			buttonTime = 0.0f;
 		}
 	}
 
-	public void addHealth(int i) {
+	void OnCollisionEnter2D(Collision2D col) 
+	{
+		if (col.gameObject.name == "Demon") 
+		{
+			Debug.Log ("bruuuuhhhh");
+			subtractHealth (1);
+		}
+	}
+
+	void die() {
+		Debug.Log ("u sukc");
+	}
+
+	public void addHealth(int i) 
+	{
 		health += i;
 	}
 
-	public void subtractHealth(int i) {
+	public void subtractHealth(int i) 
+	{
 		health -= i;
 	}
 
-	public int getHealth() {
+	public int getHealth() 
+	{
 		return health;
 	}
 		

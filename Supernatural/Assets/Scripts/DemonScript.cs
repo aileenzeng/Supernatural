@@ -27,7 +27,8 @@ public class DemonScript : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		gameTicks += Time.deltaTime;
 
 		moveDemon();
@@ -35,27 +36,29 @@ public class DemonScript : MonoBehaviour {
 	}
 
 	//moves demon left and right
-	void moveDemon() {
-		Debug.Log ("Position: " + ts.transform.position.x + " Direction: " + direction);
+	void moveDemon() 
+	{
+		//Debug.Log ("Position: " + ts.transform.position.x + " Direction: " + direction);
 		//if the demon is moving right and it has not gone to the right boundary
 		if (direction && (this.ts.transform.position.x < rightBoundary)) 
 		{
 			this.ts.Translate (Vector2.right * DemonSpeed * Time.deltaTime);
-			Debug.Log ("Enemy is moving right");
-			if (direction && this.transform.position.x >= rightBoundary) {
+			//enemy changes direction
+			if (direction && this.transform.position.x >= rightBoundary) 
+			{
 				direction = false;
-				Debug.Log ("Changing direction");
 			}
 		} 
+
 		//if the demon is moving left and it has not gone to the left boundary
 		if (!direction && (this.ts.transform.position.x > leftBoundary)) 
 		{
 			this.ts.Translate (Vector2.left * DemonSpeed * Time.deltaTime);
-			if (!direction && this.transform.position.x <= leftBoundary) {
+			//enemy changes direction
+			if (!direction && this.transform.position.x <= leftBoundary) 
+			{
 				direction = true;
-				Debug.Log ("Changing direction");
 			}
-			Debug.Log ("Demon is moving left");
 		}
 
 	}
