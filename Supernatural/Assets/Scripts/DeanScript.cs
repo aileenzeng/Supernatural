@@ -86,6 +86,12 @@ public class DeanScript : MonoBehaviour {
 		rb.AddForce(Vector2.down * gravity * rb.mass);	
 	}
 
+	//creates a functional display for health... and bullets
+	void OnGUI () 
+	{
+		GUI.Label (new Rect (10, 10, 80, 30), "Health: " + health);
+	}
+
 	//use to print out debug messages (that you don't want to spam)
 	void testFunction() 
 	{
@@ -105,7 +111,7 @@ public class DeanScript : MonoBehaviour {
 			subtractHealth (1);
 		}
 	}
-
+		
 	public void kill() 
 	{
 		Destroy (this.gameObject);
