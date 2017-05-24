@@ -63,7 +63,12 @@ public class DemonScript : MonoBehaviour {
 
 	}
 
-	public void kill() {
+	void OnCollisionEnter2D (Collision2D col) {
+		
+	}
+
+	public void kill() 
+	{
 		Destroy (this.gameObject);
 	}
 }

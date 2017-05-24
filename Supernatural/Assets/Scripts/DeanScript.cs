@@ -48,31 +48,31 @@ public class DeanScript : MonoBehaviour {
 		movePlayer();
 		testFunction();
 
-		if (health = 0) { die (); }
+		if (health == 0) { kill (); }
 
 	}
 
 	//Handles user control for player
 	void movePlayer() 
 	{
-		//moves player left
+		//moves player left - 'A'
 		if (Input.GetButton (LEFT) == true) 
 		{
 			transform.Translate (Vector2.left * horizSpeed * Time.deltaTime);
 		}
 
-		//moves player right
+		//moves player right - 'D'
 		if (Input.GetButton (RIGHT) == true) {
 			transform.Translate (Vector2.right * horizSpeed * Time.deltaTime);
 		}
 
-		//makes player jump
+		//makes player jump - 'W'
 		if (Input.GetButton (JUMP) == true && isGrounded) 
 		{
 			rb.velocity = new Vector2 (0, 10.0f);
 		}
 
-		//makes player shoot
+		//makes player shoot - 'space'
 		if (Input.GetButton (SHOOT) == true && gunTime > gunReloadTime) 
 		{
 			Debug.Log ("SHOT!");
@@ -89,10 +89,11 @@ public class DeanScript : MonoBehaviour {
 	//use to print out debug messages (that you don't want to spam)
 	void testFunction() 
 	{
+		//'T'
 		if (Input.GetButton (TEST) == true && buttonTime > 1.0f) 
 		{
-			Debug.Log ("Hello!");
 			buttonTime = 0.0f;
+			Debug.Log (health);
 		}
 	}
 
@@ -105,8 +106,9 @@ public class DeanScript : MonoBehaviour {
 		}
 	}
 
-	void die() {
-		Debug.Log ("u sukc");
+	public void kill() 
+	{
+		Destroy (this.gameObject);
 	}
 
 	public void addHealth(int i) 
