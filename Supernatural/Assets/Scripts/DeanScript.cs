@@ -23,6 +23,8 @@ public class DeanScript : MonoBehaviour {
 	private bool isGrounded;
 
 	//weapon, health
+	public GameObject bullet;
+	private Transform ts;
 	private int health;
 	public int gunReloadTime;
 	private float gunTime;
@@ -35,6 +37,7 @@ public class DeanScript : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		rb.freezeRotation = true;
+		ts = GetComponent<Transform> ();
 
 		health = STARTHEALTH; 
 	}
@@ -77,6 +80,7 @@ public class DeanScript : MonoBehaviour {
 		{
 			Debug.Log ("SHOT!");
 			gunTime = 0.0f;
+			Instantiate (bullet);
 			//create code to release a bullet - create class for it
 		}
 

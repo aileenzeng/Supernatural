@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
+	public GameObject player;
+
+	private Transform ts;
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +16,5 @@ public class BulletScript : MonoBehaviour {
 	void Update () {
 		
 	}
+		
 }
