@@ -21,6 +21,7 @@ public class DeanScript : MonoBehaviour {
 	public float gravity;
 	public LayerMask groundLayers;
 	private bool isGrounded;
+    private Vector3 currPos;
 
 	//weapon, health
 	public GameObject bullet;
@@ -48,9 +49,11 @@ public class DeanScript : MonoBehaviour {
 		gunTime += Time.deltaTime;
 		buttonTime += Time.deltaTime;
 
+        //currPos = new Vector2(GetComponent<Transform>().transform.x, GetComponent<Transform>().transform.y);
+        //Debug.Log("Player position: " + currPos);
 		movePlayer();
 		testFunction();
-
+        
 		if (health == 0) { kill (); }
 
 	}
