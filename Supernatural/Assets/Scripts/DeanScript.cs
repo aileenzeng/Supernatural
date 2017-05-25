@@ -49,8 +49,10 @@ public class DeanScript : MonoBehaviour {
 		gunTime += Time.deltaTime;
 		buttonTime += Time.deltaTime;
 
-        //currPos = new Vector2(GetComponent<Transform>().transform.x, GetComponent<Transform>().transform.y);
+        currPos = GetComponent<Transform>().position;
+        //currPos = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, 0);
         //Debug.Log("Player position: " + currPos);
+        Debug.Log(ts.transform);
 		movePlayer();
 		testFunction();
         
@@ -83,7 +85,7 @@ public class DeanScript : MonoBehaviour {
 		{
 			Debug.Log ("SHOT!");
 			gunTime = 0.0f;
-			Instantiate (bullet);
+            Instantiate(bullet, transform.position, transform.rotation);
 			//create code to release a bullet - create class for it
 		}
 
