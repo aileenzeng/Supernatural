@@ -22,6 +22,7 @@ public class DeanScript : MonoBehaviour {
 	public LayerMask groundLayers;
 	private bool isGrounded;
     private Vector3 currPos;
+	private bool direction;
 
 	//weapon, health
 	public GameObject bullet;
@@ -41,6 +42,7 @@ public class DeanScript : MonoBehaviour {
 		ts = GetComponent<Transform> ();
 
 		health = STARTHEALTH; 
+		direction = true;
 	}
 	
 	// Update is called once per frame
@@ -63,16 +65,20 @@ public class DeanScript : MonoBehaviour {
 	//Handles user control for player
 	void movePlayer() 
 	{
+		//moves player right - 'D'
+		if (Input.GetButton (RIGHT) == true) {
+			transform.Translate (Vector2.right * horizSpeed * Time.deltaTime);
+			direction = true;
+		}
+
 		//moves player left - 'A'
 		if (Input.GetButton (LEFT) == true) 
 		{
 			transform.Translate (Vector2.left * horizSpeed * Time.deltaTime);
+			direction = false;
 		}
 
-		//moves player right - 'D'
-		if (Input.GetButton (RIGHT) == true) {
-			transform.Translate (Vector2.right * horizSpeed * Time.deltaTime);
-		}
+
 
 		//makes player jump - 'W'
 		if (Input.GetButton (JUMP) == true && isGrounded) 
@@ -85,7 +91,7 @@ public class DeanScript : MonoBehaviour {
 		{
 			Debug.Log ("SHOT!");
 			gunTime = 0.0f;
-            Instantiate(bullet, transform.position, transform.rotation);
+            var bullet = Instantiate(bullet, transform.position, transform.rotation);
 			//create code to release a bullet - create class for it
 		}
 
@@ -139,6 +145,11 @@ public class DeanScript : MonoBehaviour {
 	public int getHealth() 
 	{
 		return health;
+	}
+
+	public bool getDirection()
+	{
+		return direction;
 	}
 		
 }
