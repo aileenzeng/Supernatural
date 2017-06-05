@@ -54,7 +54,6 @@ public class DeanScript : MonoBehaviour {
         currPos = GetComponent<Transform>().position;
         //currPos = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, 0);
         //Debug.Log("Player position: " + currPos);
-        Debug.Log(ts.transform);
 		movePlayer();
 		testFunction();
         
@@ -91,8 +90,21 @@ public class DeanScript : MonoBehaviour {
 		{
 			Debug.Log ("SHOT!");
 			gunTime = 0.0f;
-            var bullet = Instantiate(bullet, transform.position, transform.rotation);
 			//create code to release a bullet - create class for it
+
+			float toAdd = 0;
+
+			//The direction the bullet will go in
+			Vector3 force;
+			force = Vector2.right;	//change so bullet changes direction
+			toAdd = 0.5f;
+			float rotation = 0.0f;
+
+			Vector2 pos = new Vector3(transform.position.x + toAdd, transform.position.y);
+			var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, rotation));
+			var rbBullet = newBullet.GetComponent<Rigidbody2D>();
+			rbBullet.velocity = newBullet.GetComponent<BulletScript>().speed * Vector2.right;
+
 		}
 
 		//Checks to see if the player is touching the ground
@@ -122,7 +134,6 @@ public class DeanScript : MonoBehaviour {
 	{
 		if (col.gameObject.name == "Demon") 
 		{
-			Debug.Log ("bruuuuhhhh");
 			subtractHealth (1);
 		}
 	}

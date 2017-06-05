@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
-	public GameObject player;
+	public DeanScript dean;
 
 	private Rigidbody2D rb;
 	private Transform ts;
@@ -15,28 +15,16 @@ public class BulletScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-		direction = GetComponentInParent<DeanScript> ().getDirection ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		moveBullet ();
-
+		getDirection ();
+		Debug.Log (direction);
 	}
 
-	void moveBullet() {
-		rb.velocity = speed * force;
+	void getDirection() {
+		direction = dean.GetComponent<DeanScript> ().getDirection ();
 	}
-
-	void setForce() {
-		if (direction) {
-			force = Vector2.right;
-		}
-
-		if (!direction) {
-			force = Vector2.left;
-		}
-	}
-
 		
 }
