@@ -93,12 +93,19 @@ public class DeanScript : MonoBehaviour {
 			//create code to release a bullet - create class for it
 
 			float toAdd = 0;
+			Vector2 force;
+			float rotation = 0.0f;
 
 			//The direction the bullet will go in
-			Vector3 force;
-			force = Vector2.right;	//change so bullet changes direction
-			toAdd = 0.5f;
-			float rotation = 0.0f;
+			if (direction) {
+				force = Vector2.right;	//change so bullet changes direction
+				toAdd = 0.5f;
+			}
+
+			if (!direction) {
+				force = Vector2.left;
+				toAdd = -0.5f;
+			}
 
 			Vector2 pos = new Vector3(transform.position.x + toAdd, transform.position.y);
 			var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, rotation));
