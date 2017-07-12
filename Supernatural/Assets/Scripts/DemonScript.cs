@@ -14,6 +14,8 @@ public class DemonScript : MonoBehaviour {
 	public float rightBoundary; //how far the demon goes right
 	public float leftBoundary; //how far the demon goes left
 
+	public int health;
+
 	// Use this for initialization
 	void Start () {
 		direction = true;
@@ -32,6 +34,11 @@ public class DemonScript : MonoBehaviour {
 		gameTicks += Time.deltaTime;
 
 		moveDemon();
+		if (health <= 0) 
+		{
+			kill ();
+		}
+
 		
 	}
 
@@ -63,10 +70,10 @@ public class DemonScript : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter2D (Collider2D col) {
-		if (col.gameObject.name == "Bullet") {
-			Debug.Log ("Demon/Bullet collision");
-			kill ();
+	void OnCollisionEnter2D (Collision2D col) {
+		if (col.gameObject.tag == "Bullet") 
+		{
+			health--;
 		}
 	}
 
