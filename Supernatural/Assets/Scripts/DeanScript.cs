@@ -35,12 +35,14 @@ public class DeanScript : MonoBehaviour {
 
 	//misc
 	private float buttonTime;
+	private SpriteRenderer sr;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		rb.freezeRotation = true;
 		ts = GetComponent<Transform> ();
+		sr = GetComponentInChildren<SpriteRenderer> ();
 
 		health = STARTHEALTH; 
 		direction = true;
@@ -69,6 +71,7 @@ public class DeanScript : MonoBehaviour {
 		if (Input.GetButton (RIGHT) == true) {
 			transform.Translate (Vector2.right * horizSpeed * Time.deltaTime);
 			direction = true;
+			sr.flipX = false;
 		}
 
 		//moves player left - 'A'
@@ -76,6 +79,7 @@ public class DeanScript : MonoBehaviour {
 		{
 			transform.Translate (Vector2.left * horizSpeed * Time.deltaTime);
 			direction = false;
+			sr.flipX = true;
 		}
 
 

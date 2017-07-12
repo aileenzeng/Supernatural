@@ -7,6 +7,7 @@ public class DemonScript : MonoBehaviour {
 
 	private Rigidbody2D rb;
 	private Transform ts; 
+	private SpriteRenderer sr;
 
 	public float DemonSpeed; 
 
@@ -21,8 +22,11 @@ public class DemonScript : MonoBehaviour {
 		direction = true;
 		gameTicks = 0.0f;
 
-		rb = GetComponent<Rigidbody2D> ();
-		ts = GetComponent<Transform> (); 
+		rb = GetComponent<Rigidbody2D>();
+		ts = GetComponent<Transform>(); 
+		sr = GetComponentInChildren<SpriteRenderer>();
+
+		sr.flipX = false;
 
 		rb.freezeRotation = true;
 
@@ -54,6 +58,7 @@ public class DemonScript : MonoBehaviour {
 			if (direction && this.transform.position.x >= rightBoundary) 
 			{
 				direction = false;
+				sr.flipX = true;
 			}
 		} 
 
@@ -65,6 +70,7 @@ public class DemonScript : MonoBehaviour {
 			if (!direction && this.transform.position.x <= leftBoundary) 
 			{
 				direction = true;
+				sr.flipX = false;
 			}
 		}
 
