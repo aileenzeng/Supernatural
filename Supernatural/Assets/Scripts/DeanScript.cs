@@ -30,6 +30,7 @@ public class DeanScript : MonoBehaviour {
 	private int health;
 	public int gunReloadTime;
 	private float gunTime;
+	private Vector2 force;
 
 
 	//misc
@@ -92,7 +93,8 @@ public class DeanScript : MonoBehaviour {
 		}
 
 		//Checks to see if the player is touching the ground
-		isGrounded = Physics2D.Raycast (transform.position, Vector2.down, GetComponent<Collider2D> ().bounds.size.y / 2 + 0.2f, groundLayers);
+		isGrounded = Physics2D.Raycast (transform.position, Vector2.down, GetComponent<Collider2D>().bounds.size.y / 2 + 0.2f, 
+			groundLayers);
 		//adds gravity to the player
 		rb.AddForce(Vector2.down * gravity * rb.mass);	
 	}
@@ -122,12 +124,11 @@ public class DeanScript : MonoBehaviour {
 		}
 	}
 
-	//move to bullet class
+	//move to bullet class?
 	void shootBullet() {
 		gunTime = 0.0f;
 
 		float toAdd = 0;
-		Vector2 force = Vector2.right; //default
 		float rotation = 0.0f;
 
 		//The direction the bullet will go in
@@ -141,12 +142,13 @@ public class DeanScript : MonoBehaviour {
 			toAdd = -0.5f;
 		}
 
-		Vector2 pos = new Vector3(transform.position.x + toAdd, transform.position.y);
+		Vector2 pos = new Vector2(transform.position.x + toAdd, transform.position.y);
 		var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, rotation));
 		var rbBullet = newBullet.GetComponent<Rigidbody2D>();
 		rbBullet.velocity = newBullet.GetComponent<BulletScript>().speed * force;
 		
 	}
+
 	public void kill() 
 	{
 		Destroy (this.gameObject);
