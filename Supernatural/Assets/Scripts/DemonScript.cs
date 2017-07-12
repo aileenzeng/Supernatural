@@ -81,4 +81,9 @@ public class DemonScript : MonoBehaviour {
 	{
 		Destroy (this.gameObject);
 	}
+
+	public bool getDirection() 
+	{
+		return direction;
+	}
 }
