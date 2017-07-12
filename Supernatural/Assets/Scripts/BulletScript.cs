@@ -19,12 +19,9 @@ public class BulletScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		getDirection ();
-		Debug.Log (direction);
+
 	}
 
-	void getDirection() {
-		direction = dean.GetComponent<DeanScript> ().getDirection ();
-	}
+
 		
 }

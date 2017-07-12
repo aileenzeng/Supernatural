@@ -63,8 +63,11 @@ public class DemonScript : MonoBehaviour {
 
 	}
 
-	void OnCollisionEnter2D (Collision2D col) {
-		
+	void OnTriggerEnter2D (Collider2D col) {
+		if (col.gameObject.name == "Bullet") {
+			Debug.Log ("Demon/Bullet collision");
+			kill ();
+		}
 	}
 
 	public void kill() 
