@@ -36,6 +36,7 @@ public class DeanScript : MonoBehaviour {
 	//misc
 	private float buttonTime;
 	private SpriteRenderer sr;
+	private bool hasWon;
 
 	// Use this for initialization
 	void Start () {
@@ -46,11 +47,14 @@ public class DeanScript : MonoBehaviour {
 
 		health = STARTHEALTH; 
 		direction = true;
+		hasWon = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		gameTicks += Time.deltaTime;
+		if (!hasWon) {
+			gameTicks += Time.deltaTime;
+		}
 		gunTime += Time.deltaTime;
 		buttonTime += Time.deltaTime;
 
@@ -108,6 +112,7 @@ public class DeanScript : MonoBehaviour {
 	void OnGUI () 
 	{
 		GUI.Label (new Rect (10, 10, 80, 30), "Health: " + health);
+		if (hasWon) { GUI.Label (new Rect (40, 40, 100, 100), "You won!"); }
 	}
 
 	//use to print out debug messages (that you don't want to spam)
@@ -118,14 +123,6 @@ public class DeanScript : MonoBehaviour {
 		{
 			buttonTime = 0.0f;
 			Debug.Log (health);
-		}
-	}
-
-	void OnCollisionEnter2D(Collision2D col) 
-	{
-		if (col.gameObject.name == "Demon") 
-		{
-			subtractHealth (1);
 		}
 	}
 
@@ -153,6 +150,19 @@ public class DeanScript : MonoBehaviour {
 		var rbBullet = newBullet.GetComponent<Rigidbody2D>();
 		rbBullet.velocity = newBullet.GetComponent<BulletScript>().speed * force;
 		
+	}
+
+	void OnCollisionEnter2D(Collision2D col) 
+	{
+		if (col.gameObject.tag == "Demon") 
+		{
+			subtractHealth (1);
+		}
+
+		if (col.gameObject.tag == "Win") 
+		{
+			hasWon = true;
+		}
 	}
 
 	public void kill() 

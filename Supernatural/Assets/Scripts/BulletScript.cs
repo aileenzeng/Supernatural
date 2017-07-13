@@ -53,6 +53,11 @@ public class BulletScript : MonoBehaviour {
 		{
 			Destroy (this.gameObject);
 		}
+
+		if (col.gameObject.tag == "Win") 
+		{
+			Destroy (this.gameObject);
+		}
 	}
 
 
