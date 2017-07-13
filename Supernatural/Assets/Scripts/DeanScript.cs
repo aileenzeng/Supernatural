@@ -21,12 +21,10 @@ public class DeanScript : MonoBehaviour {
 	public float gravity;
 	public LayerMask groundLayers;
 	private bool isGrounded;
-    private Vector3 currPos;
-	private bool direction;
+	private bool direction; //right = true, left = false
 
 	//weapon, health
 	public GameObject bullet;
-	private Transform ts;
 	private int health;
 	public int gunReloadTime;
 	private float gunTime;
@@ -42,7 +40,6 @@ public class DeanScript : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		rb.freezeRotation = true;
-		ts = GetComponent<Transform> ();
 		sr = GetComponentInChildren<SpriteRenderer> ();
 
 		health = STARTHEALTH; 
@@ -52,20 +49,15 @@ public class DeanScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!hasWon) {
-			gameTicks += Time.deltaTime;
-		}
+		gameTicks += Time.deltaTime;
 		gunTime += Time.deltaTime;
 		buttonTime += Time.deltaTime;
 
-        currPos = GetComponent<Transform>().position;
-        //currPos = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, 0);
-        //Debug.Log("Player position: " + currPos);
 		movePlayer();
 		testFunction();
         
 		//Debug.Log ("deanscript direction: " + direction);
-		if (health == 0) { kill (); }
+		if (health == 0 || transform.position.y < -20) { kill (); }
 
 	}
 
