@@ -148,6 +148,7 @@ public class DeanScript : MonoBehaviour {
 
 		Vector2 pos = new Vector2(transform.position.x + toAdd, transform.position.y);
 		var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, rotation));
+
 		var rbBullet = newBullet.GetComponent<Rigidbody2D>();
 		rbBullet.velocity = newBullet.GetComponent<BulletScript>().speed * force;
 		
