@@ -20,20 +20,21 @@ public class BulletScript : MonoBehaviour {
 		ts = GetComponent<Transform>();
 
 		startPos = ts.position;
+		//Debug.Log(dean.GetComponentInParent<DeanScript>().getDirection());
 	}
 
 	// Update is called once per frame
 	void Update () {
 		move();
 		currPos = ts.position;
-		Debug.Log("bullet start: " + startPos.x + " bullet curr: " + currPos.x);
+		//Debug.Log("bullet start: " + startPos.x + " bullet curr: " + currPos.x);
 
-		if (currPos.x - startPos.x > 5) 
+		if (Mathf.Abs(currPos.x - startPos.x) > 5) 
 		{
 			Destroy (this.gameObject);
 		}
 
-		Debug.Log(dean.GetComponent<DeanScript> ().getDirection());
+
 		
 
 	}

@@ -60,6 +60,7 @@ public class DeanScript : MonoBehaviour {
 		movePlayer();
 		testFunction();
         
+		//Debug.Log ("deanscript direction: " + direction);
 		if (health == 0) { kill (); }
 
 	}
