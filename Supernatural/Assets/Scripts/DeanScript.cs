@@ -171,6 +171,16 @@ public class DeanScript : MonoBehaviour {
 		}
 	}
 
+	//this doesn't work
+	void OnTriggerEnter2D (Collider2D col) 
+	{
+		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
+		{
+			Debug.Log ("moving ground");
+			transform.Translate(col.GetComponent<MovingPlatform>().platformVector());
+		}
+	}
+
 	public void kill() 
 	{
 		Destroy (this.gameObject);

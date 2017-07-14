@@ -12,8 +12,8 @@ public class DemonScript : MonoBehaviour {
 	public float DemonSpeed; 
 
 	private bool direction; //right = true, left = false
-	public float rightBoundary; //how far the demon goes right
 	public float leftBoundary; //how far the demon goes left
+	public float rightBoundary; //how far the demon goes right
 
 	public int health;
 
@@ -74,7 +74,6 @@ public class DemonScript : MonoBehaviour {
 				sr.flipX = false;
 			}
 		}
-
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
