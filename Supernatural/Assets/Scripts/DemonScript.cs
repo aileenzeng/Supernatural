@@ -42,7 +42,8 @@ public class DemonScript : MonoBehaviour {
 		{
 			kill ();
 		}
-
+		//Debug.Log (transform.position.x);
+		GetComponentInChildren<TextMesh>().text = "Health: " + health;
 		
 	}
 

@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BulletScript.cs" />
      <Compile Include="Assets\Scripts\DeanScript.cs" />
-     <Compile Include="Assets\Scripts\DemonHealth.cs" />
      <Compile Include="Assets\Scripts\DemonScript.cs" />
      <Compile Include="Assets\Scripts\SaltScript.cs" />
      <Compile Include="Assets\Scripts\SamScript.cs" />
