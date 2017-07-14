@@ -6,6 +6,7 @@ public class DeanScript : MonoBehaviour {
 
 	private float gameTicks;	//timing
 	private static int STARTHEALTH = 3;
+	private static int STARTAMMO = 5;
 
 	//strings for input
 	private static readonly string RIGHT = "right";
@@ -26,6 +27,7 @@ public class DeanScript : MonoBehaviour {
 	//weapon, health
 	public GameObject bullet;
 	private int health;
+	private int ammo;
 	public int gunReloadTime;
 	private float gunTime;
 	private Vector2 force;
@@ -42,7 +44,8 @@ public class DeanScript : MonoBehaviour {
 		rb.freezeRotation = true;
 		sr = GetComponentInChildren<SpriteRenderer> ();
 
-		health = STARTHEALTH; 
+		health = STARTHEALTH;
+		ammo = STARTAMMO;
 		direction = true;
 		hasWon = false;
 	}
@@ -88,9 +91,10 @@ public class DeanScript : MonoBehaviour {
 		}
 
 		//makes player shoot - 'space'
-		if (Input.GetButton (SHOOT) == true && gunTime > gunReloadTime) 
+		if (Input.GetButton (SHOOT) == true && gunTime > gunReloadTime && ammo > 0) 
 		{
 			shootBullet();
+			ammo--;
 		}
 
 		//Checks to see if the player is touching the ground
@@ -101,9 +105,11 @@ public class DeanScript : MonoBehaviour {
 	}
 
 	//creates a functional display for health... and bullets
+	//replace with something better lookng eventually
 	void OnGUI () 
 	{
 		GUI.Label (new Rect (10, 10, 80, 30), "Health: " + health);
+		GUI.Label (new Rect (100, 10, 80, 30), "Ammo: " + ammo);
 		if (hasWon) { GUI.Label (new Rect (40, 40, 100, 100), "You won!"); }
 	}
 
@@ -149,6 +155,14 @@ public class DeanScript : MonoBehaviour {
 		if (col.gameObject.tag == "Demon") 
 		{
 			subtractHealth (1);
+		}
+
+		if (col.gameObject.tag == "Salt") 
+		{
+			if (ammo < 5) 
+			{
+				ammo++;
+			}
 		}
 
 		if (col.gameObject.tag == "Win") 
