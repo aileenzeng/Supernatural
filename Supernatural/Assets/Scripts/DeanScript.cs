@@ -81,9 +81,7 @@ public class DeanScript : MonoBehaviour {
 			direction = false;
 			sr.flipX = true;
 		}
-
-
-
+			
 		//makes player jump - 'W'
 		if (Input.GetButton (JUMP) == true && isGrounded) 
 		{
