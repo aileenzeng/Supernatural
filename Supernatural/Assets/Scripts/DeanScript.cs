@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeanScript : MonoBehaviour {
 
 	private float gameTicks;	//timing
-	private static int STARTHEALTH = 3;
+	private static int STARTHEALTH = 4;
 	private static int STARTAMMO = 5;
 
 	//strings for input
@@ -167,6 +167,11 @@ public class DeanScript : MonoBehaviour {
 		if (col.gameObject.tag == "Win") 
 		{
 			hasWon = true;
+		}
+
+		if (col.gameObject.tag == "Beer" && health < 4) 
+		{
+			health++;
 		}
 	}
 
