@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DemonHealth.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DeanScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/DeanScript.cs" Line="112" Column="27" />
+      <File FileName="Assets/Scripts/DeanScript.cs" Line="178" Column="16" />
       <File FileName="Assets/Scripts/BulletScript.cs" Line="21" Column="18" />
-      <File FileName="Assets/Scripts/DemonScript.cs" Line="18" Column="19" />
-      <File FileName="Assets/Scripts/SaltScript.cs" Line="13" Column="18" />
-      <File FileName="Assets/Scripts/DemonHealth.cs" Line="17" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
