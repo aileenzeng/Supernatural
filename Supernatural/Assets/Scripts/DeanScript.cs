@@ -153,6 +153,7 @@ public class DeanScript : MonoBehaviour {
 		if (col.gameObject.tag == "Demon") 
 		{
 			subtractHealth (1);
+			Debug.Log ("Hello");
 		}
 
 		if (col.gameObject.tag == "Salt") 
