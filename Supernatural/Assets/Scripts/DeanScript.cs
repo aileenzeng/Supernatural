@@ -171,7 +171,12 @@ public class DeanScript : MonoBehaviour {
 
 		if (col.gameObject.tag == "Beer" && health < 4) 
 		{
-			health++;
+			addHealth(1);
+		}
+
+		if (col.gameObject.tag == "Spike" && health > 0) 
+		{
+			subtractHealth(1);
 		}
 	}
 
