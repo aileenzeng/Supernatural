@@ -178,6 +178,9 @@ public class DeanScript : MonoBehaviour {
 		{
 			subtractHealth(1);
 		}
+		if (col.gameObject.tag == "Moving Ground") {
+			//Debug.Log ("collision");
+		}
 	}
 
 	//this doesn't work

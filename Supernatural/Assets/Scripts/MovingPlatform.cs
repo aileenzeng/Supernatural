@@ -5,7 +5,9 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour {
 	private float gameTicks;
 	private Transform ts;
+	private Rigidbody2D rb;
 
+	private float elevation;
 	public float platformSpeed;
 	public float leftBoundary;
 	public float rightBoundary;
@@ -17,25 +19,30 @@ public class MovingPlatform : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ts = GetComponent<Transform>();
+		rb = GetComponent<Rigidbody2D>();
+
+		rb.freezeRotation = true;
 		direction = true;
+		elevation = ts.position.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		ts = GetComponent<Transform> ();
 		gameTicks += Time.deltaTime;
 		movePlatform ();
 
-		leftVector = (Vector2.left * platformSpeed * Time.deltaTime);
-		rightVector = (Vector2.right * platformSpeed * Time.deltaTime);
+
 		
 	}
 
 	//moves platform left and right
 	void movePlatform() 
 	{
-		//if the platform is moving right and it has not gone to the right boundary
+		leftVector = (Vector2.left * platformSpeed * Time.deltaTime);
+		rightVector = (Vector2.right * platformSpeed * Time.deltaTime);
 
+		//if the platform is moving right and it has not gone to the right boundary
 		if (direction && (this.ts.transform.position.x < rightBoundary)) 
 		{
 			//this.ts.Translate (Vector2.right * platformSpeed * Time.deltaTime);
@@ -60,6 +67,9 @@ public class MovingPlatform : MonoBehaviour {
 				direction = true;
 			}
 		}
+		//float currX = ts.position.x;
+		//this.ts.position.Set(currX, elevation, 0);
+	
 	}
 
 	public Vector3 platformVector() 
