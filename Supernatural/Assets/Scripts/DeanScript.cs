@@ -179,12 +179,12 @@ public class DeanScript : MonoBehaviour {
 			subtractHealth(1);
 		}
 		if (col.gameObject.tag == "Moving Ground") {
-			//Debug.Log ("collision");
+			Debug.Log ("collision");
 		}
 	}
 
 	//this doesn't work
-	void OnTriggerEnter2D (Collider2D col) 
+	void OnTriggerStay2D (Collider2D col) 
 	{
 		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
 		{
