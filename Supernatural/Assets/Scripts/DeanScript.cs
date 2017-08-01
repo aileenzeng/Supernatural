@@ -23,6 +23,7 @@ public class DeanScript : MonoBehaviour {
 	public LayerMask groundLayers;
 	private bool isGrounded;
 	private bool direction; //right = true, left = false
+	public GameObject movingPlatform;
 
 	//weapon, health
 	public GameObject bullet;
@@ -31,7 +32,6 @@ public class DeanScript : MonoBehaviour {
 	public int gunReloadTime;
 	private float gunTime;
 	private Vector2 force;
-
 
 	//misc
 	private float buttonTime;
@@ -178,19 +178,32 @@ public class DeanScript : MonoBehaviour {
 		{
 			subtractHealth(1);
 		}
-		if (col.gameObject.tag == "Moving Ground") {
+
+		if (col.gameObject.tag == "Moving Ground" && isGrounded) {
 			Debug.Log ("collision");
+			movePlayerOnPlatform ();
+			//GetComponent<Rigidbody2D> ().isKinematic = true;
+			//transform.parent = col.transform;
 		}
 	}
-
+	/*
 	//this doesn't work
 	void OnTriggerStay2D (Collider2D col) 
 	{
 		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
 		{
 			Debug.Log ("moving ground");
-			transform.Translate(col.GetComponent<MovingPlatform>().platformVector());
+			//transform.Translate(col.GetComponent<MovingPlatform>().platformVector());
+			GetComponent<Rigidbody2D> ().isKinematic = true;
+			transform.parent = col.transform;
 		}
+	}
+	*/
+
+	void movePlayerOnPlatform() {
+
+		Debug.Log(movingPlatform.GetComponent<MovingPlatform> ().test ());
+		transform.Translate (movingPlatform.GetComponent<MovingPlatform> ().getPlatformVector());
 	}
 
 	public void kill() 

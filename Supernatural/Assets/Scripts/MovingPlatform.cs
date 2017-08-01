@@ -72,8 +72,12 @@ public class MovingPlatform : MonoBehaviour {
 	
 	}
 
-	public Vector3 platformVector() 
+	public Vector3 getPlatformVector() 
 	{
 		return currVector;
+	}
+
+	public string test() {
+		return "hello";
 	}
 }
