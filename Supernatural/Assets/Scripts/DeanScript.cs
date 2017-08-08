@@ -24,6 +24,7 @@ public class DeanScript : MonoBehaviour {
 	private bool isGrounded;
 	private bool direction; //right = true, left = false
 	public GameObject movingPlatform;
+	private bool onPlatform;
 
 	//weapon, health
 	public GameObject bullet;
@@ -61,6 +62,8 @@ public class DeanScript : MonoBehaviour {
         
 		//Debug.Log ("deanscript direction: " + direction);
 		if (health == 0 || transform.position.y < -20) { kill (); }
+
+		if (onPlatform) {movePlayerOnPlatform();}
 
 	}
 
@@ -180,25 +183,10 @@ public class DeanScript : MonoBehaviour {
 		}
 
 		if (col.gameObject.tag == "Moving Ground" && isGrounded) {
-			Debug.Log ("collision");
-			movePlayerOnPlatform ();
-			//GetComponent<Rigidbody2D> ().isKinematic = true;
-			//transform.parent = col.transform;
+			onPlatform = true;
 		}
+
 	}
-	/*
-	//this doesn't work
-	void OnTriggerStay2D (Collider2D col) 
-	{
-		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
-		{
-			Debug.Log ("moving ground");
-			//transform.Translate(col.GetComponent<MovingPlatform>().platformVector());
-			GetComponent<Rigidbody2D> ().isKinematic = true;
-			transform.parent = col.transform;
-		}
-	}
-	*/
 
 	void movePlayerOnPlatform() {
 
