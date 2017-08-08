@@ -182,10 +182,19 @@ public class DeanScript : MonoBehaviour {
 			subtractHealth(1);
 		}
 
-		if (col.gameObject.tag == "Moving Ground" && isGrounded) {
-			onPlatform = true;
+		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
+		{
+			//onPlatform = true;
 		}
 
+	}
+
+	void OnCollisionStay2D (Collision2D col)
+	{
+		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
+		{
+			onPlatform = true;
+		}
 	}
 
 	void OnCollisionExit2D(Collision2D col)
