@@ -7,7 +7,6 @@ public class MovingPlatform : MonoBehaviour {
 	private Transform ts;
 	private Rigidbody2D rb;
 
-	private float elevation;
 	public float platformSpeed;
 	public float leftBoundary;
 	public float rightBoundary;
@@ -15,7 +14,7 @@ public class MovingPlatform : MonoBehaviour {
 
 	private Vector3 leftVector;
 	private Vector3 rightVector;
-	private Vector3 currVector;
+	private float currSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +23,7 @@ public class MovingPlatform : MonoBehaviour {
 
 		rb.freezeRotation = true;
 		direction = true;
-		elevation = ts.position.y;
+		currSpeed = platformSpeed;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +31,7 @@ public class MovingPlatform : MonoBehaviour {
 		gameTicks += Time.deltaTime;
 		movePlatform ();
 
-
+		//Debug.Log (currSpeed);
 		
 	}
 
@@ -47,7 +46,7 @@ public class MovingPlatform : MonoBehaviour {
 		{
 			//this.ts.Translate (Vector2.right * platformSpeed * Time.deltaTime);
 			this.ts.Translate (rightVector);
-			currVector = rightVector;
+			currSpeed = platformSpeed;
 			//platform changes direction to left
 			if (direction && this.transform.position.x >= rightBoundary) 
 			{
@@ -60,7 +59,7 @@ public class MovingPlatform : MonoBehaviour {
 		{
 			//this.ts.Translate (Vector2.left * platformSpeed * Time.deltaTime);
 			this.ts.Translate (leftVector);
-			currVector = leftVector;
+			currSpeed = -platformSpeed;
 			//platform changes direction to right
 			if (!direction && this.transform.position.x <= leftBoundary) 
 			{
@@ -72,12 +71,27 @@ public class MovingPlatform : MonoBehaviour {
 	
 	}
 
-	public Vector3 getPlatformVector() 
-	{
-		return currVector;
-	}
 
-	public string test() {
-		return "hello";
+	public float getPlatformSpeed() 
+	{
+		//Debug.Log (currSpeed);	//why don't it work
+		//return currSpeed;
+		//this is horrendous sorry
+		if (direction) 
+		{
+			Debug.Log (platformSpeed);
+			return platformSpeed;
+		}
+		if (!direction) 
+		{
+			Debug.Log (-platformSpeed);
+			return -platformSpeed;
+		} 
+		else 
+		{
+			Debug.Log ("error");
+			return 0;
+		}
+
 	}
 }

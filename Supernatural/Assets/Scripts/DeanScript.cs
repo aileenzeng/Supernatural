@@ -188,10 +188,16 @@ public class DeanScript : MonoBehaviour {
 
 	}
 
-	void movePlayerOnPlatform() {
+	void OnCollisionExit2D(Collision2D col)
+	{
+		onPlatform = false;
+	}
 
-		Debug.Log(movingPlatform.GetComponent<MovingPlatform> ().test ());
-		transform.Translate (movingPlatform.GetComponent<MovingPlatform> ().getPlatformVector());
+	void movePlayerOnPlatform() {
+		//Debug.Log(movingPlatform.GetComponent<MovingPlatform> ().test ());
+		float platformSpeed = movingPlatform.GetComponent<MovingPlatform>().getPlatformSpeed();
+		//Debug.Log (platformSpeed);
+		transform.Translate (platformSpeed * Time.deltaTime, 0, 0);
 	}
 
 	public void kill() 
