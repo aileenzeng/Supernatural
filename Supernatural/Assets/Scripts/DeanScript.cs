@@ -130,24 +130,19 @@ public class DeanScript : MonoBehaviour {
 		gunTime = 0.0f;
 
 		float toAdd = 0;
-		float rotation = 0.0f;
 
-		//The direction the bullet will go in
+		//Sets location the bullet will go in
 		if (direction) {
-			force = Vector2.right;	//change so bullet changes direction
 			toAdd = 0.5f;
 		}
 
 		if (!direction) {
-			force = Vector2.left;
 			toAdd = -0.5f;
 		}
 
 		Vector2 pos = new Vector2(transform.position.x + toAdd, transform.position.y);
-		var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, rotation));
-
-		var rbBullet = newBullet.GetComponent<Rigidbody2D>();
-		rbBullet.velocity = newBullet.GetComponent<BulletScript>().speed * force;
+		var newBullet = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
+		newBullet.GetComponent<BulletScript> ().setDirection (direction);
 		
 	}
 
@@ -197,7 +192,8 @@ public class DeanScript : MonoBehaviour {
 		onPlatform = false;
 	}
 
-	void moveOnPlatform() {
+	void moveOnPlatform() 
+	{
 		float platformSpeed = movingPlatform.GetComponent<MovingPlatform>().getPlatformSpeed();
 		transform.Translate (platformSpeed * Time.deltaTime, 0, 0);
 	}
@@ -222,6 +218,7 @@ public class DeanScript : MonoBehaviour {
 		return health;
 	}
 
+	//this is not working?
 	public bool getDirection()
 	{
 		return direction;
