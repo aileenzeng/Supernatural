@@ -63,7 +63,7 @@ public class DeanScript : MonoBehaviour {
 		//Debug.Log ("deanscript direction: " + direction);
 		if (health == 0 || transform.position.y < -20) { kill (); }
 
-		if (onPlatform) {movePlayerOnPlatform();}
+		if (onPlatform) {moveOnPlatform();}
 
 	}
 
@@ -182,16 +182,11 @@ public class DeanScript : MonoBehaviour {
 			subtractHealth(1);
 		}
 
-		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
-		{
-			//onPlatform = true;
-		}
-
 	}
 
 	void OnCollisionStay2D (Collision2D col)
 	{
-		if (col.gameObject.tag == "Moving Ground" && isGrounded) 
+		if (col.gameObject.tag == "Moving Ground") 
 		{
 			onPlatform = true;
 		}
@@ -202,10 +197,8 @@ public class DeanScript : MonoBehaviour {
 		onPlatform = false;
 	}
 
-	void movePlayerOnPlatform() {
-		//Debug.Log(movingPlatform.GetComponent<MovingPlatform> ().test ());
+	void moveOnPlatform() {
 		float platformSpeed = movingPlatform.GetComponent<MovingPlatform>().getPlatformSpeed();
-		//Debug.Log (platformSpeed);
 		transform.Translate (platformSpeed * Time.deltaTime, 0, 0);
 	}
 
